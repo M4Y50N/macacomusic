@@ -1,6 +1,8 @@
 const Discord = require("discord.js"),
 	client = new Discord.Client(),
-	config = require("./config.json");
+	config = require("./config.json"),
+	ytdl = require("ytdl-core"),
+	streamOptions = { seek: 0, volume: 1 };
 
 client.on("ready", () => {
 	console.log(
@@ -36,6 +38,24 @@ client.on("message", async (message) => {
 				m.createdTimestamp - message.createdTimestamp
 			}ms. A latência da API é ${Math.round(client.ws.ping)}ms.`
 		);
+	} else if (comando === "play") {
+		let VChannel = message.guild.channels.cache.find((x) => {
+			return x.id == "824186376832286731";
+		});
+
+		if (VChannel !== null) {
+			VChannel.join()
+				.then((connection) => {
+					const stream = ytdl("https://www.youtube.com/watch?v=imwmmv9r1oE", {
+							filter: "audioonly",
+						}),
+						DJ = connection.play(stream, streamOptions);
+					DJ.on("end", (end) => {
+						VChannel.leave();
+					});
+				})
+				.catch(console.error);
+		}
 	}
 });
 

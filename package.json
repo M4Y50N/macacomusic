@@ -18,6 +18,10 @@
   },
   "homepage": "https://github.com/M4Y50N/macacomusic#readme",
   "dependencies": {
-    "discord.js": "^12.5.1"
+    "discord.js": "^12.5.1",
+    "ffbinaries": "^1.1.4",
+    "ffmpeg-static": "^4.2.8",
+    "opusscript": "0.0.8",
+    "ytdl-core": "^4.5.0"
   }
 }
