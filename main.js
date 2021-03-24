@@ -43,10 +43,12 @@ client.on("message", async (message) => {
 			return x.id == "824186376832286731";
 		});
 
+		console.log(args);
+
 		if (VChannel !== null) {
 			VChannel.join()
 				.then((connection) => {
-					const stream = ytdl("https://www.youtube.com/watch?v=imwmmv9r1oE", {
+					const stream = ytdl(args[0], {
 							filter: "audioonly",
 						}),
 						DJ = connection.play(stream, streamOptions);
